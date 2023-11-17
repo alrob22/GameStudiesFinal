@@ -8,7 +8,7 @@ public class ToBattleCollision : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player")) {
             Application.LoadLevel("battle");
-            Debug.Log("its Colliding!");
+            Debug.Log("It's Colliding!");
         }
     }
 }
