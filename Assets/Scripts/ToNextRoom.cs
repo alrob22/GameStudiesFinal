@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ToBattleCollision : MonoBehaviour
-{   
+public class ToNextRoom : MonoBehaviour
+{
+    [SerializeField] string room;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player")) {
-            Application.LoadLevel("battle");
-            Debug.Log("To battle!");
+            Application.LoadLevel(room);
+            Debug.Log("To next room!");
         }
     }
 }
