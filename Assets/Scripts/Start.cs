@@ -13,7 +13,7 @@ public class Start : MonoBehaviour
         start = Input.GetButtonDown("Submit");
         if (start) {
             //Application.LoadLevel("Room1");
-            SceneManager.LoadScene("battle");
+            SceneManager.LoadScene("Room1");
         }
     }
 }
