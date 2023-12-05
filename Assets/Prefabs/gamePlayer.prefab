@@ -173,3 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   rb: {fileID: 6599213116243455118}
+  down: {fileID: 21300000, guid: d2d852790950ef148ae093a4559576a1, type: 3}
+  up: {fileID: 21300000, guid: 3e3530db3be0afc4cb115110e52b630b, type: 3}
+  right: {fileID: 21300000, guid: 46ac7d0122c360c44a60a92c261ec528, type: 3}
+  left: {fileID: 21300000, guid: a78fdae314ffc2041b4d6f90c18e7a87, type: 3}

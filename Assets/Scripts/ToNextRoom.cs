@@ -13,7 +13,6 @@ public class ToNextRoom : MonoBehaviour
             SceneManager.LoadScene(room);
 
             Debug.Log("next room");
-
         }
     }
 }
