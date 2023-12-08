@@ -10,7 +10,10 @@ public class ToNextRoom : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player")) {
             //Application.LoadLevel(room);
+            PlayerStats.level = room;
             SceneManager.LoadScene(room);
+            PlayerStats.killed = new string[10];
+            PlayerStats.x = 0;
 
             Debug.Log("next room");
         }

@@ -1,8 +1,9 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST }
 
@@ -45,7 +46,8 @@ public class BattleSystem : MonoBehaviour
     {
         state = BattleState.START;
         StartCoroutine(SetupBattle());
-        
+
+
     }
 
     IEnumerator SetupBattle()
@@ -59,14 +61,17 @@ public class BattleSystem : MonoBehaviour
 
         dialogueText.text = "A wild " + enemyUnit.unitName + " approaches...";
 
+        playerUnit.currentHP = PlayerStats.health;
+
         playerHUD.SetHUD(playerUnit);
         enemyHUD.SetHUD(enemyUnit);
+
 
         playerPosition = 2;
         playerElevation = 3;
         enemyElevation = 3;
         col4Elevation = 4;
-        
+
 
         yield return new WaitForSeconds(2f);
 
@@ -142,9 +147,16 @@ public class BattleSystem : MonoBehaviour
         if (state == BattleState.WON)
         {
             dialogueText.text = "You killed him!";
+            PlayerStats.health = playerUnit.currentHP;
+            SceneManager.LoadScene(PlayerStats.level);
+
         } else if (state == BattleState.LOST)
         {
+            PlayerStats.health = 25;
             dialogueText.text = "You were defeated.";
+            PlayerStats.killed = new string[10];
+            PlayerStats.x = 0;
+            SceneManager.LoadScene("Start");
         }
 
     }
@@ -153,7 +165,7 @@ public class BattleSystem : MonoBehaviour
     void PlayerTurn()
     {
         dialogueText.text = "CHOOSE AN ACTION";
-   
+
         if (playerPosition > 0)
         {
             moveLButton.gameObject.SetActive(true);
@@ -173,7 +185,7 @@ public class BattleSystem : MonoBehaviour
 
     public void OnHealButton()
     {
-        
+
         if (state != BattleState.PLAYERTURN)
             return;
 
@@ -200,7 +212,7 @@ public class BattleSystem : MonoBehaviour
 
     public void OnAttackButton()
     {
-        
+
         if (state != BattleState.PLAYERTURN)
             return;
 
@@ -226,7 +238,7 @@ public class BattleSystem : MonoBehaviour
 
         if (attackRoll >= 51)
         {
-            
+
             int damage = playerUnit.damage;
 
             //enhance damage by elevation (make sure it isn't negative)
@@ -294,11 +306,11 @@ public class BattleSystem : MonoBehaviour
             col4.transform.position = new Vector3((float)1.41, -6, 0);
         }
 
-       
+
 
         yield return new WaitForSeconds(1f);
 
-        
+
 
         dialogueText.text = "Demolition Complete.";
 
