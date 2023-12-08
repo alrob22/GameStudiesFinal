@@ -16,6 +16,12 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        if (PlayerStats.x != 0)
+        {
+            Debug.Log(PlayerStats.x);
+            rb.position = new Vector2(PlayerStats.x, PlayerStats.y);
+            Debug.Log(rb.position.ToString());
+        }
     }
 
     // Update is called once per frame
@@ -59,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
             movement.y--;
         }
     }
-    
+
     void FixedUpdate() {
         rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
     }
